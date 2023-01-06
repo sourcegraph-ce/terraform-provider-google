@@ -41,6 +41,20 @@ func resourceSecretManagerSecret() *schema.Resource {
 			Delete: schema.DefaultTimeout(20 * time.Minute),
 		},
 
+		// CustomizeDiff: func(ctx context.Context, d *schema.ResourceDiff, v interface{}) error {
+		// 	fmt.Printf("\n\n\n\n\n\n Inside the CustomizeDiff! \n\n\n\n\n\n")
+
+		// 	fmt.Printf("\n\n\n\n\n\n due_to_expire = %v \n\n\n\n\n\n", d.Get("due_to_expire").(bool))
+		// 	err := d.SetNew("due_to_expire", flattenSecretManagerDueToExpire(d))
+		// 	if err != nil {
+		// 		return err
+		// 	}
+
+		// 	// err := d.SetNew("due_to_expire", !exp)
+
+		// 	return nil
+		// },
+
 		Schema: map[string]*schema.Schema{
 			"replication": {
 				Type:     schema.TypeList,
@@ -358,7 +372,7 @@ func resourceSecretManagerSecretRead(d *schema.ResourceData, meta interface{}) e
 	if err := d.Set("rotation", flattenSecretManagerSecretRotation(res["rotation"], d, config)); err != nil {
 		return fmt.Errorf("Error reading Secret: %s", err)
 	}
-	if err := d.Set("due_to_expire", flattenSecretManagerDueToExpire(nil, d, config)); err != nil {
+	if err := d.Set("due_to_expire", flattenSecretManagerDueToExpireRead(nil, d, config)); err != nil {
 		return fmt.Errorf("Error reading Secret: %s", err)
 	}
 
@@ -635,7 +649,50 @@ func flattenSecretManagerSecretRotation(v interface{}, d *schema.ResourceData, c
 	return []interface{}{transformed}
 }
 
-func flattenSecretManagerDueToExpire(v interface{}, d *schema.ResourceData, config *Config) interface{} {
+// func flattenSecretManagerDueToExpire(d *schema.ResourceDiff) interface{} {
+// 	// func flattenSecretManagerDueToExpire(v interface{}, d *schema.ResourceData, config *Config) interface{} {
+
+// 	// Get the time when expiration happens
+// 	et, ok := d.GetOk("expire_time")
+// 	if !ok {
+// 		return nil
+// 	}
+// 	expireTime, err := time.Parse(time.RFC3339, et.(string))
+// 	if err != nil {
+// 		return nil
+// 	}
+// 	expireTime = expireTime.UTC()
+
+// 	if p, ok := d.GetOk("expiry_warning_period"); ok {
+
+// 		// Get the duration before the expiration that warnings should happen in
+// 		warningPeriod, err := time.ParseDuration(p.(string))
+// 		if err != nil {
+// 			return nil
+// 		}
+
+// 		// Get time remaining until expiration
+// 		timeToExpiry := time.Until(expireTime)
+
+// 		// If remaining time before expiration less than the warning period duration
+// 		if timeToExpiry < warningPeriod {
+// 			fmt.Printf("\n\nSARAHFRENCH setting due_to_expire to true; timeToExpiry is %v and warningPeriod is %v\n\n", timeToExpiry, warningPeriod)
+// 			return true
+// 		} else {
+// 			fmt.Printf("\n\nSARAHFRENCH setting due_to_expire to false; timeToExpiry is %v and warningPeriod is %v\n\n", timeToExpiry, warningPeriod)
+// 			return false
+// 		}
+// 	}
+
+// 	return false
+
+// 	// fmt.Printf("\n\flattenSecretManagerDueToExpire  v is %v \n\n", v)
+// 	// fmt.Printf("\n\flattenSecretManagerDueToExpire d.Get is %v \n\n", d.Get("due_to_expire"))
+
+// 	// return d.Get("due_to_expire")
+// }
+
+func flattenSecretManagerDueToExpireRead(v interface{}, d *schema.ResourceData, config *Config) interface{} {
 
 	// Get the time when expiration happens
 	et, ok := d.GetOk("expire_time")
@@ -670,6 +727,7 @@ func flattenSecretManagerDueToExpire(v interface{}, d *schema.ResourceData, conf
 	}
 
 	return false
+
 }
 
 func flattenSecretManagerSecretRotationNextRotationTime(v interface{}, d *schema.ResourceData, config *Config) interface{} {
