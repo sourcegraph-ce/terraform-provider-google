@@ -229,7 +229,6 @@ A duration in seconds with up to nine fractional digits, terminated by 's'. Exam
 				Type:        schema.TypeBool,
 				Computed:    true,
 				Description: "A boolean indicating if the resource is approaching its expiration time. The value will be true if the current time is in the `expiry_warning_period` period leading up to the expiration time. For example, a `expiry_warning_period` value of 600s would result in `due_to_expire` being true in the 10 minutes leading up to expiration. If `expiry_warning_period` is not set, `due_to_expire` only becomes true at point of expiry. Does not relate to the Google API.",
-				// Dumb shit
 			},
 		},
 		UseJSONNumber: true,
