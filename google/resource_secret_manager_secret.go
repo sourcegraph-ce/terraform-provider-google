@@ -700,6 +700,7 @@ func flattenSecretManagerDueToExpireRead(v interface{}, d *schema.ResourceData, 
 	// Get the time when expiration happens
 	et, ok := d.GetOk("expire_time")
 	if !ok {
+		// Handle resource without an expiration time
 		return nil
 	}
 	expireTime, err := time.Parse(time.RFC3339, et.(string))
@@ -729,7 +730,8 @@ func flattenSecretManagerDueToExpireRead(v interface{}, d *schema.ResourceData, 
 		}
 	}
 
-	return false
+	// Set due_to_expire to false when expiry_warning_period is not set
+	return nil
 
 }
 
