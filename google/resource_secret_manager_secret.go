@@ -15,6 +15,7 @@
 package google
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"reflect"
@@ -41,19 +42,21 @@ func resourceSecretManagerSecret() *schema.Resource {
 			Delete: schema.DefaultTimeout(20 * time.Minute),
 		},
 
-		// CustomizeDiff: func(ctx context.Context, d *schema.ResourceDiff, v interface{}) error {
-		// 	fmt.Printf("\n\n\n\n\n\n Inside the CustomizeDiff! \n\n\n\n\n\n")
+		CustomizeDiff: func(ctx context.Context, d *schema.ResourceDiff, v interface{}) error {
+			fmt.Printf("\n\n\n\n\n\n Inside the CustomizeDiff! \n\n\n\n\n\n")
 
-		// 	fmt.Printf("\n\n\n\n\n\n due_to_expire = %v \n\n\n\n\n\n", d.Get("due_to_expire").(bool))
-		// 	err := d.SetNew("due_to_expire", flattenSecretManagerDueToExpire(d))
-		// 	if err != nil {
-		// 		return err
-		// 	}
+			if d.HasChange("expiry_warning_period") {
+				fmt.Printf("\n\n\n\n\n\n due_to_expire is currently %v \n\n\n\n\n\n", d.Get("due_to_expire").(bool))
+				fmt.Printf("\n\n\n\n\n\n due_to_expire is being reset because expiry_warning_period is changing \n\n\n\n\n\n")
+				// Need to unset this otherwise can 'lock' a resource that has a condition checking due_to_expire and when that value is true
+				err := d.SetNewComputed("due_to_expire")
+				if err != nil {
+					return err
+				}
+			}
 
-		// 	// err := d.SetNew("due_to_expire", !exp)
-
-		// 	return nil
-		// },
+			return nil
+		},
 
 		Schema: map[string]*schema.Schema{
 			"replication": {
