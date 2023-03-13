@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 output "pool_public_ip" {
   value = google_compute_forwarding_rule.default.ip_address
 }

@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 # An example of how to connect two GCE networks with a VPN
 provider "google" {
   credentials = file("~/gce/account.json")

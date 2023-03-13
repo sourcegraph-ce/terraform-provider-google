@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 # This is a sample workflow that simply logs the incoming Pub/Sub event
 # Note that $$ is needed for Terraform
 

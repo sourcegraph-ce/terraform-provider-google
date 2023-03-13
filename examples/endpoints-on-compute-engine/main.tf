@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 provider "google" {
   region      = var.region
   credentials = file(var.credentials_file_path)

@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 # https://cloud.google.com/compute/docs/load-balancing/http/content-based-example
 
 provider "google" {

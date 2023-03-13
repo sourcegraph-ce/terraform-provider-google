@@ -1,4 +1,7 @@
 #!/bin/bash
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 
 sudo apt-get install git -y
 curl https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz | tar xzf -

@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 # Example for using Cloud Armor https://cloud.google.com/armor/
 #
 

@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 sudo apt-get update
 sudo apt-get install apache2 -y
 sudo a2ensite default-ssl

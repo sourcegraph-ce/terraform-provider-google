@@ -1,4 +1,7 @@
 #!/bin/bash -xe
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 
 RESOURCE_INDEX=$1
 apt-get -y update
