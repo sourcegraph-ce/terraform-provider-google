@@ -19,7 +19,7 @@ import (
 	"go/parser"
 	"go/token"
 	"io/ioutil"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"net/http"
 	"os"
 	"path/filepath"

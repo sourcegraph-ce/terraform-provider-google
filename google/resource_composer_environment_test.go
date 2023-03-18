@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"regexp"
 	"strings"
 	"time"
