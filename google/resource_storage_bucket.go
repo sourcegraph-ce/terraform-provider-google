@@ -5,7 +5,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"math"
 	"runtime"
 	"strconv"

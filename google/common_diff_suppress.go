@@ -5,7 +5,7 @@ package google
 import (
 	"crypto/sha256"
 	"encoding/hex"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"net"
 	"reflect"
 	"regexp"
