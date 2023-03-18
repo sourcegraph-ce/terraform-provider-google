@@ -16,7 +16,7 @@ package google
 
 import (
 	"context"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"strings"
 	"testing"
 

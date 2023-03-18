@@ -2,7 +2,7 @@ package google
 
 import (
 	"fmt"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 
 	dcl "github.com/GoogleCloudPlatform/declarative-resource-client-library/dcl"
 	"github.com/hashicorp/errwrap"

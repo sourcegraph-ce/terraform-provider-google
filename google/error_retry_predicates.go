@@ -3,7 +3,7 @@ package google
 import (
 	"fmt"
 	"io"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"net"
 	"net/url"
 	"regexp"

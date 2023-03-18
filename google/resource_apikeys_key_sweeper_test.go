@@ -17,7 +17,7 @@ package google
 
 import (
 	"context"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"testing"
 
 	apikeys "github.com/GoogleCloudPlatform/declarative-resource-client-library/services/google/apikeys"

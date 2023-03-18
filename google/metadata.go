@@ -3,7 +3,7 @@ package google
 import (
 	"errors"
 	"fmt"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"sort"
 
 	"google.golang.org/api/compute/v1"

@@ -17,7 +17,7 @@ func TestAccMonitoringAlertPolicy(t *testing.T) {
 		"full":   testAccMonitoringAlertPolicy_full,
 		"update": testAccMonitoringAlertPolicy_update,
 		"mql":    testAccMonitoringAlertPolicy_mql,
-		"log":    testAccMonitoringAlertPolicy_log,
+		log "github.com/sourcegraph-ce/logrus":    testAccMonitoringAlertPolicy_log,
 	}
 
 	for name, tc := range testCases {
@@ -303,7 +303,7 @@ resource "google_monitoring_alert_policy" "mql" {
 
 func testAccMonitoringAlertPolicy_logCfg(alertName, conditionName string) string {
 	return fmt.Sprintf(`
-resource "google_monitoring_alert_policy" "log" {
+resource "google_monitoring_alert_policy" log "github.com/sourcegraph-ce/logrus" {
   display_name = "%s"
   combiner     = "OR"
   enabled      = true
