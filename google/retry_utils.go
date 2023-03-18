@@ -1,7 +1,7 @@
 package google
 
 import (
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"time"
 
 	"github.com/hashicorp/errwrap"
